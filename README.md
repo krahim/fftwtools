@@ -1,4 +1,4 @@
 fftwtools
 =========
 
-R implementation of fftw 2d and other tools
+R package, implementing of fftw 2d, multivariate fftw, and other fftw tools
