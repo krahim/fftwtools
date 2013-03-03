@@ -1,0 +1,11 @@
+Package: fftwtools
+Version: 0.9-1 
+Date: 2013-03-02
+Title: fftwtools
+Author: Karim Rahim <karim.rahim@gmail.com>
+Maintainer: Karim Rahim <karim.rahim@gmail.com>
+Depends: R (>= 2.15.2)
+Suggests: fftw
+Description: This package is a wrapper for certain fftw function. Please see the fftw package for addtional tools. This package provides access to two-dimensional fft, multivariate fft, and one-dimensional real to complex fft using fftw3. The fft functions can be specified to not return the Hermitian conjugate of real data, and the one-dimensional, and multivariate fft functions can be inverted without using the Hermitian conjugate. Please see the package fftw for general one-dimensional use of fftw, the discrete cosine transform, and more detailed use of plans when using fftw.
+License: GPL (>= 2)
+URL: http://github.com/krahim/fftwtools

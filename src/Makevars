@@ -1,0 +1,30 @@
+##     The fftwtools R package
+##     fftw2d and general mvfftw tools in R
+##     Copyright (C) 2013 Karim Rahim 
+
+##     This file is part of the fftwtools package for R.
+
+##     The fftwtools package is free software: you can redistribute it and
+##     /or modify
+##     it under the terms of the GNU General Public License as published by
+##     the Free Software Foundation, either version 2 of the License, or
+##     any later version.
+
+##     The multitaper package is distributed in the hope that it will be 
+##     useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
+##     of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+##     GNU General Public License for more details.
+
+##     You should have received a copy of the GNU General Public License
+##     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+
+##     If you wish to report bugs please contact the author. 
+##     karim.rahim@gmail.com
+##     Jeffery Hall, Queen's University, Kingston Ontario
+##     Canada, K7L 3N6
+
+FFTW3_CFLAGS = -I/usr/local/include
+FFTW3_LIBS = -L/usr/local/lib -lfftw3
+
+PKG_CPPFLAGS=$(FFTW3_CFLAGS) -I.
+PKG_LIBS=$(FFTW3_LIBS)

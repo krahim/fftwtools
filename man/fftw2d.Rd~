@@ -1,0 +1,66 @@
+%     The fftwtools R package
+%     fftw2d and general mvfftw tools in R
+%     Copyright (C) 2013 Karim Rahim 
+%
+%     Written by Karim Rahim.
+%
+%     This file is part of the multitaper package for R.
+%
+%     The fftw2d package is free software: you can redistribute it and
+%     or modify it under the terms of the GNU General Public License as 
+%     published by the Free Software Foundation, either version 2 of the 
+%     License, or any later version.
+%
+%     The multitaper package is distributed in the hope that it will be 
+%     useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
+%     of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%     GNU General Public License for more details.
+%
+%     You should have received a copy of the GNU General Public License
+%     along with multitaper.  If not, see <http://www.gnu.org/licenses/>.
+%
+%     If you wish to report bugs please contact the author. 
+%     karim.rahim@gmail.com
+%     Jeffery Hall, Queen's University, Kingston Ontario
+%     Canada, K7L 3N6
+
+\name{fftw2d}
+\alias{fftw2d}
+\alias{fftw_c2c_2d}
+\alias{fftw_r2c_2d}
+\title{Compute a two-dimensional fft on a matrix using fftw3}
+\description{
+  Use  fftw_r2c_2d(x, HermConj=0) for real to complex fft. This will
+  return the result without the Hermitian conjugate. This follows the R
+  convention for returning the inverse of the FFT. For the two-dimension
+  fft, the inverse is currently  requires the entire matrix, with the
+  Hermitian to be computed.
+
+}
+\usage{
+fftw2d(data, inverse=0, HermConj=1)
+fftw_r2c_2d(data, HermConj=1)
+fftw_c2c_2d(data, inverse=0)
+}
+\arguments{
+  \item{data}{(complex or real) matrix to be processed}
+  \item{inverse}{(integer) 1 or 0 indicating if inverse fft is
+    preformed. The return follows the format of the R fft commands.}
+  \item{HermConj}{(integer) 1 or 0 indicating if either Hermitian
+    conjugate should be returned.}
+}
+\author{Karim Rahim}
+\examples{
+x=c(1, 2, 3, 9, 8, 5, 1, 2, 9, 8, 7, 2)
+x= t(matrix(x, nrow=4))
+mvfft(x)
+t(mvfft(t(mvfft(x))))
+fftw2d(x)
+fftw2d(x, HermConj=0)
+
+fftw2d(fftw2d(x), inverse=1)/12
+fftw2d(fftw2d(t(x)), inverse=1)/12
+fftw_r2c_2d(x)
+fftw_r2c_2d(x, HermConj=0)
+}
+\keyword{fftw}
