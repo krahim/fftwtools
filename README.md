@@ -1,4 +1,4 @@
-fftw2d
-======
+fftwtools
+=========
 
-R implementation of fft 2d (this depends on fftw)
+R implementation of fftw 2d and other tools
