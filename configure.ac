@@ -1,5 +1,8 @@
 ## 
 ## This file is part of fftwtools
+## Note this file was copied from the file used in the R FFTW package 
+## As was the general build principle, and I am indebted to the authors of that
+## package.
 ##
 ## Process this file with autoconf to produce a configure script.
 ##
@@ -23,14 +26,14 @@ fi
 AC_PROG_CPP
 AC_PROG_CC
 
-if test `uname` = "Darwin" ; then
-   darwin="yes"
-else
-   darwin="no"
-fi
+##if test `uname` = "Darwin" ; then
+##   darwin="yes"
+##else
+##   darwin="no"
+##fi
 
 ## --- FFTW 3 ----------------------------------------------------------------
-PKG_CHECK_MODULES(fftwtools, fftw3)
+PKG_CHECK_MODULES(FFTW, fftw3)
 
 ## --- Output ----------------------------------------------------------------
 AC_SUBST(FFTW_CFLAGS)
