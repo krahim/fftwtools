@@ -4,20 +4,20 @@
 %
 %     Written by Karim Rahim.
 %
-%     This file is part of the multitaper package for R.
+%     This file is part of the fftwtools package for R.
 %
 %     The fftwtools package is free software: you can redistribute it and
 %     or modify it under the terms of the GNU General Public License as 
 %     published by the Free Software Foundation, either version 2 of the 
 %     License, or any later version.
 %
-%     The multitaper package is distributed in the hope that it will be 
+%     The fftwtools package is distributed in the hope that it will be 
 %     useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
 %     of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 %     GNU General Public License for more details.
 %
 %     You should have received a copy of the GNU General Public License
-%     along with multitaper.  If not, see <http://www.gnu.org/licenses/>.
+%     along with fftwtools.  If not, see <http://www.gnu.org/licenses/>.
 %
 %     If you wish to report bugs please contact the author. 
 %     karim.rahim@gmail.com
@@ -31,12 +31,14 @@
 \alias{fftw_c2r}
 \title{Compute fft using fftw3}
 \description{
-  Use  fftw_r2c(x, HermConj=0) for real to complex fft. This will
-  return the result without the Hermitian conjugate. This follows the R
-  convention for returning the inverse of the FFT. The function
-  mvfftw_c2r(res, HermConj=0, n=length(x)) will invert the fft
-  from the result not containing the Hermitian conjugate. You must
-  specify, n, the dimension of the original data--length--if the Hermitian conjugate is not included. 
+  These functions compute the FFT using the FFTW3 libraries.
+  Use fftw_r2c(x, HermConj=0) for real to complex fft. This will
+  return the result without the redundant complex conjugate. This follows the R
+  convention for returning the unscaled inverse of the FFT. The function
+  fftw_c2r(res, HermConj=0, n=length(x)) will invert the FFT
+  from the result not containing the redundant complex conjugate. You must
+  specify, n, the dimension of the original data--length--if the
+  redundant complex conjugate is not included. 
 
 }
 \usage{
@@ -48,14 +50,15 @@ fftw_c2r(data, HermConj=1, n=NULL)
 }
 \arguments{
   \item{data}{(complex or real) vector to be processed}
-  \item{inverse}{(integer) 1 or 0 indicating if inverse fft is
-    preformed. The return follows the format of the R fft commands.}
-  \item{HermConj}{(integer) 1 or 0 indicating if either Hermitian
+  \item{inverse}{(integer) 1 or 0 indicating if inverse FFT is
+    preformed. The return follows the format of the R FFT commands--the
+    output is not scaled.}
+  \item{HermConj}{(integer) 1 or 0 indicating if either "Hermitian" redundant 
     conjugate should be returned, or that the complex to real data
-    includes the Hermitian
+    includes the "Hermitian" redundant
     conjugate.}
-  \item{n}{(integer) column length of the original data set, when using
-    the inverse coplex to real fft without providing the Hermitian
+  \item{n}{(integer) column length of the original data set. This is required when using
+    the inverse complex to real FFT without providing the "Hermitian" redundant
     conjugate.} 
 }
 \author{Karim Rahim}
