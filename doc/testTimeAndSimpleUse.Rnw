@@ -1,0 +1,121 @@
+\documentclass{article}
+
+%usepackage{hyperref}
+%\usepackage{natbib}
+%\usepackage{graphics}
+%\usepackage{amsmath}
+%\usepackage{indentfirst}
+%\usepackage[utf8]{inputenc}
+
+% \VignetteIndexEntry{ffttools example and simple use example}
+
+\begin{document}
+
+<<foo,include=FALSE,echo=FALSE>>=
+options(keep.source = TRUE, width = 60)
+fftwtools1 <- packageDescription("fftwtools")
+@
+
+\title{FFTWTOOlS Timing, and Simple Example (Version \Sexpr{fftwtools1$Version})} 
+\author{Karim J. Rahim}
+\maketitle
+
+\section{Timing Example}
+
+This is a simple example demonstrating comparing timing of \texttt{fftw} in the package \texttt{fftwtools} and showing how
+to replace the \texttt{R} function \texttt{fft} with \texttt{fftw} if you so choose.  We begin with a quick demonstrating that speed difference in the default case. The performance improvement is only visible with large data sets. In this example I am using one million data points. You can test timing at any size and decide which function to use. Also the package \texttt{FFTW} package allows you to specify plans which should improve performance if multiple transforms are done of a data set of the same size.
+
+First we look at the time required for he default \texttt{fft} routine.
+<<timing1>>=
+
+library("fftwtools")
+
+set.seed(10)
+## we try power of 2 but we can try other values
+## we do ffts of 2^20 points
+g <- rnorm(2^20)
+
+
+##timing # Start the clock!
+ptm <- proc.time()
+
+# Loop through 
+for (i in 1:100){
+    fft(g)
+}
+
+# Stop the clock
+proc.time() - ptm
+
+@ 
+
+Next we look at replacing \texttt{fft} with \texttt{fftw} without any other changes.
+
+<<<timing2>>=
+##timing # Start the clock!
+ptm <- proc.time()
+
+# Loop through 
+for (i in 1:100){
+    fftw(g)
+}
+
+# Stop the clock
+proc.time() - ptm
+@ 
+
+Finally we look to see how much additional improvement can by had by not returning the complex conjugate which is not required for real data. This speed up is likely due to decreased memory allocation. 
+
+<<<timing3>>= 
+##timing # Start the clock!
+ptm <- proc.time()
+
+# Loop through 
+for (i in 1:100){
+    fftw(g, HermConj=FALSE)
+}
+
+# Stop the clock
+proc.time() - ptm
+@
+
+
+\section{Replace R's \texttt{fft} call with \texttt{fftw}}
+
+I do not recommend you do this in general, but it may be a simple way to speed up code or code in packages that call \texttt{fft}. This is done by simply replacing all calls to \texttt{fft} with calls to \texttt{fftw}. 
+
+<<replace function>>=
+ 
+## basic option ot overwrite calls
+fft <- function(z, inverse = FALSE) {
+    fftwtools::fftw(z, inverse=inverse)
+}
+
+mvfft <- function(z, inverse=FALSE) {
+    fftwtools::mvfftw(z, invese=inverse)
+}
+@ 
+
+
+If you are interested in the additional improvement available not returning the unnecessary complex conjugate in real data, you can overwrite the call while setting \texttt{HermConj} to \texttt{FALSE}.
+
+<<<replace without conjugate>>=
+
+fft <- function(z, inverse = FALSE) {
+    fftwtools::fftw(z, inverse=inverse, HermConj=FALSE)
+}
+@
+
+The last method may break certain calls depending on when the complex conjugate is discarded in real data. I should note that when using real data, if you discard the complex conjugate, you will need the length of the original data to perform an inverse \texttt{fft}. is required to use an inverse \texttt{ttt}. So if you are doing the latter you should be more careful and may want to look into the other functions provided in the packages \texttt{FFTW} and \texttt{fftwtools}.
+
+\subsection{Clean up}
+
+If you replace the \texttt{R}'s call to \texttt{fft} with \texttt{fftw}, it is good practice to clean up the replacement, and return calls to \texttt{fft} and \texttt{mvfft} to the standard \texttt{R} routine when you are finished using \texttt{fftw}.
+
+<<cleanup1>>=
+rm(fft, mvfft)
+@ 
+
+\end{document}
+
+
