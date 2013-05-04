@@ -16,14 +16,19 @@ options(keep.source = TRUE, width = 60)
 fftwtools1 <- packageDescription("fftwtools")
 @
 
-\title{FFTWTOOlS Timing, and Simple Example (Version \Sexpr{fftwtools1$Version})} 
+\title{FFTWTOOLS Timing and Simple Example (Version \Sexpr{fftwtools1$Version})} 
 \author{Karim J. Rahim}
 \maketitle
 
+\section{Overview}
+
+The package \texttt{fftwtool} provides a wrapper \texttt{FFTW} code discussed in~\cite{FFTW05}.
+This is a simple example comparing execution times of \texttt{fftw} from the package \texttt{fftwtools} to the standard \texttt{R}  \texttt{fft} function. This vignette also shows how
+to replace the \texttt{R} function \texttt{fft} with \texttt{fftw} if you so choose.  
+
 \section{Timing Example}
 
-This is a simple example demonstrating comparing timing of \texttt{fftw} in the package \texttt{fftwtools} and showing how
-to replace the \texttt{R} function \texttt{fft} with \texttt{fftw} if you so choose.  We begin with a quick demonstrating that speed difference in the default case. The performance improvement is only visible with large data sets. In this example I am using one million data points. You can test timing at any size and decide which function to use. Also the package \texttt{FFTW} package allows you to specify plans which should improve performance if multiple transforms are done of a data set of the same size.
+We begin with a quick demonstrating that speed difference between a simple call to \texttt{fftw} and the default \texttt{fft} function. The performance improvement is visible with large data sets. In this example I am using over one million data points. You can test timing at any size and decide which function to use. Also the package \texttt{FFTW} package allows you to specify plans which should improve performance if multiple transforms are done of a data set of the same size.
 
 First we look at the time required for he default \texttt{fft} routine.
 <<timing1>>=
@@ -115,6 +120,9 @@ If you replace the \texttt{R}'s call to \texttt{fft} with \texttt{fftw}, it is g
 <<cleanup1>>=
 rm(fft, mvfft)
 @ 
+
+\bibliographystyle{plain}
+\bibliography{testTimeAndSimpleUse}
 
 \end{document}
 

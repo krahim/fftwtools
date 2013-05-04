@@ -1,5 +1,6 @@
 ^\\.git
 ^\\.gitignore
+inst/doc/auto
 src/build/autoconf/config
 aclocal.log
 aclocal.m4 
