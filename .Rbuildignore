@@ -11,4 +11,6 @@ clean
 README.md
 ~$
 src/Makevars$
-scriptRequiredToBuildWithFFTW.txt
+buildNotesInR.txt
+
+

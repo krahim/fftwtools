@@ -24,21 +24,35 @@ fftwtools1 <- packageDescription("fftwtools")
 
 The package \texttt{fftwtool} provides a wrapper \texttt{FFTW} code discussed in~\cite{FFTW05}.
 This is a simple example comparing execution times of \texttt{fftw} from the package \texttt{fftwtools} to the standard \texttt{R}  \texttt{fft} function. This vignette also shows how
-to replace the \texttt{R} function \texttt{fft} with \texttt{fftw} if you so choose.  
+to replace the \texttt{R} function \texttt{fft} with \texttt{fftw}.  I note that there is a \texttt{R} package called \texttt{FFTW} which offers different functionality than this package, specifically it allows the user to set \emph{plans}, and improve the speed with multiple calls to \texttt{fftw} when using data sets of the same size, see~\cite{FFTW05}. 
 
 \section{Timing Example}
 
 We begin with a quick demonstrating that speed difference between a simple call to \texttt{fftw} and the default \texttt{fft} function. The performance improvement is visible with large data sets. In this example I am using over one million data points. You can test timing at any size and decide which function to use. Also the package \texttt{FFTW} package allows you to specify plans which should improve performance if multiple transforms are done of a data set of the same size.
+
+I should note that I reduced \texttt{fftLength} from $2^20$ to $2^8$ for the build and tests so as to not include time consuming speed checks in the install and check procedure. On my machine I noted the following times using \texttt{fftLength} of $2^20$:
+
+\begin{itemize}
+  \item \texttt{R}'s \texttt{fft} 19.069 seconds
+  \item \texttt{fftw} default call 8.804 seconds
+  \item texttt{fftw} with \texttt{HermConj} set to \texttt{FALSE} 7.594 seconds.
+\end{itemize}
+
+The speed advantage of the use of the package \texttt{fftw} is only seen in large examples, and I recommend appropriate use of both packages. 
+
 
 First we look at the time required for he default \texttt{fft} routine.
 <<timing1>>=
 
 library("fftwtools")
 
+## we try power of 2 but we can try other values
+## we do ffts of 2^20 points
+fftLength <- 2^10
 set.seed(10)
 ## we try power of 2 but we can try other values
 ## we do ffts of 2^20 points
-g <- rnorm(2^20)
+g <- rnorm(fftLength)
 
 
 ##timing # Start the clock!
@@ -87,7 +101,7 @@ proc.time() - ptm
 
 \section{Replace R's \texttt{fft} call with \texttt{fftw}}
 
-I do not recommend you do this in general, but it may be a simple way to speed up code or code in packages that call \texttt{fft}. This is done by simply replacing all calls to \texttt{fft} with calls to \texttt{fftw}. 
+I do not recommend you do this in general, but it may be a simple way to speed up code, or code in packages that call \texttt{fft}. This is done by simply replacing all calls to \texttt{fft} with calls to \texttt{fftw}. 
 
 <<replace function>>=
  
@@ -101,6 +115,7 @@ mvfft <- function(z, inverse=FALSE) {
 }
 @ 
 
+The above replacement is an initial first step in replacing all \texttt{fft} calls with \texttt{fftw} calls in the \texttt{multitaper} package which I maintain.
 
 If you are interested in the additional improvement available not returning the unnecessary complex conjugate in real data, you can overwrite the call while setting \texttt{HermConj} to \texttt{FALSE}.
 

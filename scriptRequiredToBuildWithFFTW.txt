@@ -1,9 +1,0 @@
-Current thoughts not yet set to rbuilder
-This appears to be the minimialist list for R.
-
-configure.ac
-configure ## removing causes issues
-src/Makevars.in
-src/build/autoconf/install.sh
-
-
