@@ -1,5 +1,0 @@
-
-#! /bin/sh
-rm -f config.* src/Makevars src/Makedeps src/*.o src/*.so src/*.dll src/*.def 
-rm -fR autom4te.cache
-rm -f *~ */*~
