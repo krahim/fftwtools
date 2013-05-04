@@ -3,3 +3,9 @@
 *.o
 *.so
 \#*
+aclocal.log
+autom4te.cache/
+config.log
+config.status
+inst/doc/auto/
+src/symbols.rds

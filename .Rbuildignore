@@ -6,7 +6,9 @@ aclocal.log
 aclocal.m4 
 autom4te.cache/
 clean
-config.log
-config.status
+^config.log
+^config.status
 README.md
-
+~$
+src/Makevars$
+scriptRequiredToBuildWithFFTW.txt
