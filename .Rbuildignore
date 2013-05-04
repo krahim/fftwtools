@@ -1,16 +1,15 @@
 ^\\.git
 ^\\.gitignore
 inst/doc/auto
-src/build/autoconf/config
 aclocal.log
-aclocal.m4 
 autom4te.cache/
-clean
 ^config.log
 ^config.status
+^configure$
+^clean$
+src/build/autoconf/config
 README.md
 ~$
-src/Makevars$
 buildNotesInR.txt
 
 
