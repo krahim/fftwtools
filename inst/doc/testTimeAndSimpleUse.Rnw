@@ -85,6 +85,7 @@ for (i in 1:100){
 
 # Stop the clock
 proc.time() - ptm
+
 @ 
 
 Finally we look to see how much additional improvement can by had by not returning the complex conjugate which is not required for real data. I suspect that this speed up is partially due to decreased memory allocation. 
@@ -100,6 +101,7 @@ for (i in 1:100){
 
 # Stop the clock
 proc.time() - ptm
+
 @
 
 
