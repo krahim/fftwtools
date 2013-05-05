@@ -9,4 +9,5 @@ SystemRequirements: fftw3 (>= 3.1.2)
 Suggests: fftw
 Description: This package is a wrapper for several fftw functions. Please see the fftw package for additional tools. This package provides access to the two-dimensional fft, the multivariate fft, and the one-dimensional real to complex fft using fftw3. The fft functions have a parameter that allows them to not return the redundant complex conjugate when the input is real data. The one-dimensional and multivariate fft functions can be inverted without the redundant complex conjugate. Please see the package fftw for general one-dimensional use of fftw, the discrete cosine transform, and for more detailed use of performance enhancing plans when using fftw.
 License: GPL (>= 2)
+ByteCompile: true
 URL: http://github.com/krahim/fftwtools
