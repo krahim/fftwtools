@@ -191,7 +191,7 @@ resFFTWnoH
 ##Suggestions:
 
 useFFTWGE <- 2^17
-useMVFFTWGE <- 2^16 ## based on two tests, of 5 and 10 columns of data
+useMVFFTWGE <- 2^16 ## Based on two tests; one of 5 columns and one of 10 columns of data
 
 fft <- function(z, inverse = FALSE) {
     if(length(z) >= useFFTWGE) {
