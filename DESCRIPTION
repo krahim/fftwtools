@@ -1,12 +1,12 @@
 Package: fftwtools
 Version: 0.9-5
-Title: Wrapper for fftw3: includes 1d, univariate and multivariate, and 2d transform
+Title: Wrapper for fftw3: includes 1-D, univariate and multivariate, and 2-D transform
 Author: Karim Rahim <karim.rahim@gmail.com>
 Maintainer: Karim Rahim <karim.rahim@gmail.com>
 Depends: R (>= 2.15.2)
 SystemRequirements: fftw3 (>= 3.1.2)
 Suggests: fftw
-Description: This package is a wrapper for several fftw functions. Please see the fftw package for additional tools. This package provides access to the two-dimensional fft, the multivariate fft, and the one-dimensional real to complex fft using fftw3. The package includes fftw3 and mvfftw2 which are designed to mimic the functionality of the R functions fftw and mvfft. The fft functions have a parameter that allows them to not return the redundant complex conjugate when the input is real data. The one-dimensional and multivariate fft functions can be inverted without the redundant complex conjugate. Please see the package fftw for general one-dimensional use of fftw, the discrete cosine transform, and for more detailed use of performance enhancing plans when using fftw. The calls to fftw and mvfftw in this package mimic the standard routines in R. 
+Description: This package is a wrapper for several fftw functions. Please see the fftw package for additional tools. This package provides access to the two-dimensional fft, the multivariate fft, and the one-dimensional real to complex fft using fftw3. The package includes the functions fftw and mvfftw which are designed to mimic the functionality of the R functions fftw and mvfft. The fft functions have a parameter that allows them to not return the redundant complex conjugate when the input is real data. Please see the package fftw for general one-dimensional use of fftw, the discrete cosine transform, and for more detailed use of performance enhancing plans when using fftw. The calls to fftw and mvfftw in this package mimic the standard routines in R. 
 License: GPL (>= 2)
 ByteCompile: true
 URL: http://github.com/krahim/fftwtools
