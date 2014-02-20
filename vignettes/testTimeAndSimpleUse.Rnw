@@ -24,13 +24,13 @@ fftwtools1 <- packageDescription("fftwtools")
 \section{Overview}
 
 The package \texttt{fftwtool} provides a wrapper for \texttt{FFTW} code discussed in \cite{FFTW05}.
-This vignette is an example comparing execution times of \texttt{fftw} from the package \texttt{fftwtools} to the standard \texttt{R}  \texttt{fft} function. The vignette also shows how
-to replace the \texttt{R} function \texttt{fft} with \texttt{fftw}. The functions \texttt{fftw} and \texttt{mvfftw} mimic the behaviour of the \texttt{R} functions \texttt{fft} and \texttt{mvfft}. I note that there is a \texttt{R} package called \texttt{FFTW} which offers different functionality than this package, specifically it allows the user to set \emph{plans}, and improve the speed with multiple calls to \texttt{fftw} when using data sets of the same size, see \cite{FFTW05}.  
+This vignette provides example code for comparing execution times of \texttt{fftw} from the package \texttt{fftwtools} to the standard \texttt{R}  \texttt{fft} function, and it demonstrates how
+to replace the \texttt{R} function \texttt{fft} with \texttt{fftw}. The functions \texttt{fftw} and \texttt{mvfftw} mimic the behaviour of the \texttt{R} functions \texttt{fft} and \texttt{mvfft}. There is an \texttt{R} package called \texttt{FFTW} which offers different functionality than fftwtools, specifically it allows the user to set \emph{plans}, and improve the speed with multiple calls to \texttt{fftw} when using data sets of the same size, see \cite{FFTW05}.  
 
 \section{Timing Example}
 
-We begin with a quick demonstration of the speed difference between a simple call to \texttt{fftw} and the default \texttt{fft} function. The performance improvement is visible with large data sets. 
-Using the example below with $2^{20}$, over one million, data points I observed the following execution times:
+We begin with a demonstration of the speed difference between a simple call to \texttt{fftw} and the default \texttt{fft} function. The performance improvement is visible with large data sets. 
+Using the example below with $2^{20},$ over one million, data points I observed the following execution times:
 \begin{itemize}
   \item \texttt{R}'s \texttt{fft}: 19.069 seconds
   \item \texttt{fftw} default call: 8.804 seconds
@@ -43,15 +43,14 @@ As the speed advantage from the use of the package \texttt{fftw} is only seen in
 To reduce the check and install times of this package, I reduced \texttt{fftLength} from $2^{20}$ to $2^8$ in the code shown in this vignette. The standard \texttt{R} routine is faster using this number of samples, but it is \emph{not} faster with very large data sets.
 
 
-To compare times, first we look at the time required for he default \texttt{R} \texttt{fft} routine.
+To compare times, first we look at the time required for the default \texttt{R} \texttt{fft} routine.
 <<timing1>>=
 
 library("fftwtools")
 
-## we try power of 2 but we can try other values
-## we do ffts of 2^20 points
-
-## reduced to 2^8 for package distribution.
+## We increment by powers of 2, but one can use other incrementes
+## We choose fftlength = 2^20, but
+## **this was reduced to 2^8 for the vignette distribution.**
 fftLength <- 2^8
 
 set.seed(10)
@@ -59,15 +58,15 @@ set.seed(10)
 g <- rnorm(fftLength)
 
 
-##timing # Start the clock!
+##Start the clock
 ptm <- proc.time()
 
-# Loop through 
+## Loop through 
 for (i in 1:100){
     fft(g)
 }
 
-# Stop the clock
+## Stop the clock
 proc.time() - ptm
 
 @ 
@@ -88,18 +87,18 @@ proc.time() - ptm
 
 @ 
 
-Finally we look to see how much additional improvement can by had by not returning the complex conjugate which is not required for real data. I suspect that this speed up is partially due to decreased memory allocation. 
+Finally we look to see how much additional improvement can by had by not returning the complex conjugate which is not required for real data. It is likely this speed up is partially due to decreased memory allocation. 
 
 <<<timing3>>= 
-##timing # Start the clock!
+## Start the clock!
 ptm <- proc.time()
 
-# Loop through 
+## Loop through 
 for (i in 1:100){
     fftw(g, HermConj=FALSE)
 }
 
-# Stop the clock
+## Stop the clock
 proc.time() - ptm
 
 @
@@ -107,7 +106,7 @@ proc.time() - ptm
 
 \section{Replace R's \texttt{fft} call with \texttt{fftw}}
 
-I do not recommend you do the following in general. However, it is a simple way to speed up code or code in packages that call \texttt{fft}. This is done by replacing all calls to \texttt{fft} with calls to \texttt{fftw}. 
+The following is a quick and dirty way to replace \texttt{fftw} with \texttt{fftw} in existing code. It is more appropriate to use a conditional statement in the replacement functions to call \texttt{fftw} and \texttt{mvfftw} when the length of $z$ is appropriately large.  
 
 <<replace function>>=
  
@@ -130,7 +129,7 @@ fft <- function(z, inverse = FALSE) {
 }
 @
 
-The last method is only valid when the input is not complex, and it may break certain calls depending on when the complex conjugate is discarded. I note that if you discard the complex conjugate, you will need the length of the original data to perform an inverse \texttt{fft}. If you are using the latter method then it may be wise to look into further functionality provided in the \texttt{R} packages \texttt{FFTW} and \texttt{fftwtools}.
+The last method is only valid when the input is not complex, and it may break certain calls depending on when the complex conjugate is discarded. If you discard the complex conjugate, you will need the length of the original data to perform an inverse Fourier transform. If you are using the latter method then it may be wise to look into further functionality provided in the \texttt{R} packages \texttt{FFTW} and \texttt{fftwtools}.
 
 \subsection{Clean up}
 

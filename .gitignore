@@ -10,3 +10,4 @@ config.status
 inst/doc/auto/
 src/symbols.rds
 configure
+speedTrials/speedTrialsfftw.R

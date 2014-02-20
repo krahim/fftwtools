@@ -1,0 +1,14 @@
+## This file is copied from the FFTW package and the build script is based
+## on the one created by the authors of that package.
+##
+## Note added May 4, 2013
+## I found using win-builder.R-project.org, Uwe's setup, that this file was required for 
+## a build on windows.
+##  It is not required on my Linux machine.
+## May 5th. I'm confused now as it appears this file is needed for building the package on Linux.
+
+
+PKG_CPPFLAGS=  
+PKG_LIBS= -lfftw3 -lm  
+
+all: $(SHLIB)

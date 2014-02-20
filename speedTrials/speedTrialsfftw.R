@@ -7,13 +7,13 @@ library("fftwtools")
 
 ## reduced to 2^8 for package distribution.
 
-fftLength <- 2^(seq(9,20,1))
-resFFT <- array(NA, dim=c(12,5))
-resFFTW <- array(NA, dim=c(12,5))
-resFFTWnoH <- array(NA, dim=c(12,5))
+fftLength <- 2^(seq(9,25,1))
+resFFT <- array(NA, dim=c(17,5))
+resFFTW <- array(NA, dim=c(17,5))
+resFFTWnoH <- array(NA, dim=c(17,5))
 ## quick and dirty test for where fftw gets faster
 
-for( j in 1:12) {
+for( j in 1:17) {
     n <- fftLength[j]
     
     set.seed(10)
@@ -65,14 +65,14 @@ resFFTWnoH
 
 
 ## try mvfft
-fftLength <- 2^(seq(13,18,1))
-resFFT <- array(NA, dim=c(6,5))
-resFFTW <- array(NA, dim=c(6,5))
-resFFTWnoH <- array(NA, dim=c(6,5))
+fftLength <- 2^(seq(13,23,1))
+resFFT <- array(NA, dim=c(11,5))
+resFFTW <- array(NA, dim=c(11,5))
+resFFTWnoH <- array(NA, dim=c(11,5))
 ## quick and dirty test for where fftw gets faster
 ncol <- 10
 
-for( j in 1:6) {
+for( j in 1:11) {
     n <- fftLength[j]
     
     set.seed(10)
