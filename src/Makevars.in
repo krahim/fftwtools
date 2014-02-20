@@ -1,0 +1,7 @@
+## this file is copied from the FFTW package and the build script is based
+## on the one created by the authors of that package.
+
+PKG_CPPFLAGS=@CPPFLAGS@ @FFTW_CFLAGS@
+PKG_LIBS=@LIBS@ @FFTW_LIBS@
+
+all: $(SHLIB)
