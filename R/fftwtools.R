@@ -135,8 +135,8 @@ fftw_c2c <- function(data, inverse=0) {
 mvfftw_r2c <- function(data, HermConj=1, fftplanopt=0) {
 
     data <- as.matrix(data)
-    n <- length(data[,1])
-    m <- length(data[1,]) ## ncol
+    n <- dim(data)[1]
+    m <- dim(data)[2]  ## ncol
 
     nc <- as.integer(n/2) +1
        
@@ -197,8 +197,8 @@ mvfftw_c2r <- function(data, HermConj=1, n=NULL, fftplanopt=0) {
 mvfftw_c2c <- function(data, inverse=0, fftplanopt=0) {
 
     data <- as.matrix(data)
-    n <- length(data[,1])
-    m <- length(data[1,])
+    n <- dim(data)[1]
+    m <- dim(data)[2]
     
     out <- .C("mvfft_c2c", as.integer(n), as.integer(m),
               as.complex(data),
@@ -215,8 +215,8 @@ fftw_r2c_2d <- function(data, HermConj=1) {
 
     data <- as.matrix(data)
 
-    nR <- length(data[,1])
-    nC <- length(data[1,])
+    nR <- dim(data)[1]
+    nC <- dim(data)[2]
     nRc <- floor(nR/2) +1
     idxRowAppend <- (nRc - (nRc %% 2)):2
 
@@ -251,8 +251,8 @@ fftw_c2c_2d <- function(data, inverse=0) {
 
     data <- as.matrix(data)
 
-    nR <- length(data[,1])
-    nC <- length(data[1,])
+    nR <- dim(data)[1]
+    nC <- dim(data)[2]
 
     ##we correct for the fact the c call is column-major
 
