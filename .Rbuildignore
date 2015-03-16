@@ -1,5 +1,6 @@
 ^\\.git
 ^\\.gitignore
+bugTest
 inst/doc/auto
 aclocal.log
 autom4te.cache/

@@ -218,7 +218,9 @@ fftw_r2c_2d <- function(data, HermConj=1) {
     nR <- dim(data)[1]
     nC <- dim(data)[2]
     nRc <- floor(nR/2) +1
-    idxRowAppend <- (nRc - (nRc %% 2)):2
+    
+    isEven <- 1 - (nRc %% 2)
+    idxRowAppend <- (nRc - isEven):2
 
     ##correct for the fact the c call is column-major
 
