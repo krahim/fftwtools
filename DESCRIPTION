@@ -6,7 +6,7 @@ Maintainer: Karim Rahim <karim.rahim@queensu.ca>
 Depends: R (>= 2.15.2)
 SystemRequirements: fftw3 (>= 3.1.2)
 Suggests: fftw
-Description: Provides a wrapper for several FFTW functions. Please see the FFTW package for additional tools. This package provides access to the two-dimensional fft, the multivariate fft, and the one-dimensional real to complex fft using fftw3. The package includes the functions fftw and mvfftw which are designed to mimic the functionality of the R functions fftw and mvfft. The fft functions have a parameter that allows them to not return the redundant complex conjugate when the input is real data. Please see the package fftw for general one-dimensional use of fftw, the discrete cosine transform, and for more detailed use of performance enhancing plans when using fftw. The calls to fftw and mvfftw in this package mimic the standard routines in R. 
+Description: Provides a wrapper for several FFTW functions. Please see the FFTW package for additional tools. This package provides access to the two-dimensional fft, the multivariate fft, and the one-dimensional real to complex fft using fftw3. The package includes the functions fftw and mvfftw which are designed to mimic the functionality of the R functions fftw and mvfft. The fft functions have a parameter that allows them to not return the redundant complex conjugate when the input is real data. 
 License: GPL (>= 2)
 ByteCompile: true
 URL: http://github.com/krahim/fftwtools
