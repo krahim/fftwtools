@@ -230,14 +230,15 @@ fftw_r2c_2d <- function(data, HermConj=1) {
     res <- as.matrix(out$res)
     if(HermConj==1) {
         if(nR == 3) {
-            ##if the number of rows to append is one, R
+            ##If the number of rows to append is one, R
             ##will create a column vector for cbind unless
             ##we transpose.
-            ## with the exception of the first row, the
-            ## resulting matrix is Hermatian --conjugate symmetric
+
             res <- rbind(res, Conj(cbind(res[2,1],
                                          t(res[2,nC:2]))))
          } else {
+             ##With the exception of the first row, the
+             ## resulting matrix is Hermatian --conjugate symmetric         
              res <- rbind(res, Conj(cbind(res[idxRowAppend,1],
                                           res[idxRowAppend,nC:2])))
          }
