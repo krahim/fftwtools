@@ -219,17 +219,23 @@ fftw_r2c_2d <- function(data, HermConj=1) {
     nC <- dim(data)[2]
     nRc <- floor(nR/2) +1
     
-    isEven <- 1 - (nRc %% 2)
-    idxRowAppend <- (nRc - isEven):2
+    isEven <- 1 - (nR %% 2)
+    idxRowAppend <- NULL
 
+    if(isEven) {
+        idxRowAppend <- (nRc -1):2
+    } else {
+        idxRowAppend <- nRc:2
+    }
+    
     ##correct for the fact the c call is column-major
 
     out <- .C("fft_r2c_2d", as.integer(nC), as.integer(nR),
               as.double(data), res=matrix(as.complex(0), nRc , nC))
 
     res <- as.matrix(out$res)
-    if(HermConj==1) {
-        if(nR == 3) {
+    if(HermConj==1 && nR > 2) {
+        if(length(idxRowAppend) == 1) {
             ##If the number of rows to append is one, R
             ##will create a column vector for cbind unless
             ##we transpose.
