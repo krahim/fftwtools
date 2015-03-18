@@ -172,7 +172,6 @@ mvfftw_c2r <- function(data, HermConj=1, n=NULL, fftplanopt=0) {
     ## in this case the Hermatian conjugate must be stripped from the data.
 
     data <- as.matrix(data)
-    ##n <- length(data[,1])
     len <- dim(data)[1]
     m <- dim(data)[2]
     nc <- NULL
@@ -219,15 +218,8 @@ fftw_r2c_2d <- function(data, HermConj=1) {
     nC <- dim(data)[2]
     nRc <- floor(nR/2) +1
     
-    isEven <- 1 - (nR %% 2)
-    idxRowAppend <- NULL
-    
-    if(isEven) {
-        idxRowAppend <- (nRc -1):2
-    } else {
-        idxRowAppend <- nRc:2
-    }
-    
+    idxRowAppend <- ceiling(nR/2):2
+
     ##correct for the fact the c call is column-major
 
     out <- .C("fft_r2c_2d", as.integer(nC), as.integer(nR),
