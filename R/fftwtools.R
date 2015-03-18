@@ -218,7 +218,7 @@ fftw_r2c_2d <- function(data, HermConj=1) {
     nC <- dim(data)[2]
     nRc <- floor(nR/2) +1
     
-    idxRowAppend <- (nR - floor(nR/2)):2
+    idxRowAppend <- ceiling(nR/2):2
 
     ##correct for the fact the c call is column-major
 
