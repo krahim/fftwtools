@@ -136,7 +136,7 @@ mvfftw_r2c <- function(data, HermConj=1, fftplanopt=0) {
 
     data <- as.matrix(data)
     n <- dim(data)[1]
-    m <- dim(data)[2] ## ncol
+    m <- dim(data)[2]  ## ncol
 
     nc <- as.integer(n/2) +1
        
@@ -217,6 +217,7 @@ fftw_r2c_2d <- function(data, HermConj=1) {
     nR <- dim(data)[1]
     nC <- dim(data)[2]
     nRc <- floor(nR/2) +1
+    
     idxRowAppend <- (nR - floor(nR/2)):2
 
     ##correct for the fact the c call is column-major
@@ -225,16 +226,17 @@ fftw_r2c_2d <- function(data, HermConj=1) {
               as.double(data), res=matrix(as.complex(0), nRc , nC))
 
     res <- as.matrix(out$res)
-    if(HermConj==1) {
+    if(HermConj==1 && nR > 2) {
         if(length(idxRowAppend) == 1) {
-            ##if the number of rows to append is one, R
+            ##If the number of rows to append is one, R
             ##will create a column vector for cbind unless
             ##we transpose.
-            ## with the exception of the first row, the
-            ## resulting matrix is Hermatian --conjugate symmetric
-            res <- rbind(res, Conj(cbind(res[idxRowAppend,1],
-                                         t(res[idxRowAppend,nC:2]))))
+
+            res <- rbind(res, Conj(cbind(res[2,1],
+                                         t(res[2,nC:2]))))
          } else {
+             ##With the exception of the first row, the
+             ## resulting matrix is Hermatian --conjugate symmetric         
              res <- rbind(res, Conj(cbind(res[idxRowAppend,1],
                                           res[idxRowAppend,nC:2])))
          }
