@@ -1,6 +1,7 @@
 ^\\.git
 ^\\.gitignore
 inst/doc/auto
+testScript
 aclocal.log
 autom4te.cache/
 ^config.log
