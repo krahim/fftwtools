@@ -222,15 +222,7 @@ fftw_r2c_2d <- function(data, HermConj=1) {
     nRc <- floor(nRdiv2) +1
     idxRowAppend <- ceiling(nRdiv2):2
     
-    ## isEven <- 1 - (nR %% 2)
-    ## idxRowAppend <- NULL
-    
-    ## if(isEven) {
-    ##     idxRowAppend <- (nRc -1):2
-    ## } else {
-    ##     idxRowAppend <- nRc:2
-    ## }
-    
+
     ##correct for the fact the c call is column-major
 
     out <- .C("fft_r2c_2d", as.integer(nC), as.integer(nR),
