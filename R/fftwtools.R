@@ -91,7 +91,7 @@ fftw_r2c <- function(data, HermConj=1) {
         nc <- as.integer(n/2) +1
     }    
 
-    out <- .C("fft_r2c", as.integer(n), as.double(data),
+    out <- .C("cfft_r2c", as.integer(n), as.double(data),
               res=complex(nc),
               as.integer(HermConj))
     return(out$res)
@@ -115,7 +115,7 @@ fftw_c2r <- function(data, HermConj=1, n=NULL) {
     }
       
     ## only pass what is needed to the C function
-    out <- .C("fft_c2r", as.integer(n), as.complex(data[1:nc]),
+    out <- .C("cfft_c2r", as.integer(n), as.complex(data[1:nc]),
               res=double(n))
     
     return(out$res)
@@ -126,7 +126,7 @@ fftw_c2c <- function(data, inverse=0) {
 
     n <- length(data)
     
-    out <- .C("fft_c2c", as.integer(n), as.complex(data),
+    out <- .C("cfft_c2c", as.integer(n), as.complex(data),
               res=complex(n), as.integer(inverse))
     
     return(out$res)
@@ -141,7 +141,7 @@ mvfftw_r2c <- function(data, HermConj=1, fftplanopt=0) {
     nc <- as.integer(n/2) +1
        
     
-    out <- .C("mvfft_r2c", as.integer(n), as.integer(m),
+    out <- .C("cmvfft_r2c", as.integer(n), as.integer(m),
               as.double(data),
               res=matrix(as.complex(0), nc, m),
               as.integer(fftplanopt))
@@ -187,7 +187,7 @@ mvfftw_c2r <- function(data, HermConj=1, n=NULL, fftplanopt=0) {
         nc <- as.integer(n/2) + 1
     }
         
-    out <- .C("mvfft_c2r", as.integer(n), as.integer(m),
+    out <- .C("cmvfft_c2r", as.integer(n), as.integer(m),
               as.complex(data[1:nc,]),
               res=matrix(as.double(0), n, m), as.integer(fftplanopt))
 
@@ -200,7 +200,7 @@ mvfftw_c2c <- function(data, inverse=0, fftplanopt=0) {
     n <- dim(data)[1]
     m <- dim(data)[2]
     
-    out <- .C("mvfft_c2c", as.integer(n), as.integer(m),
+    out <- .C("cmvfft_c2c", as.integer(n), as.integer(m),
               as.complex(data),
               res=matrix(as.complex(0), n, m),
               as.integer(inverse), as.integer(fftplanopt))
@@ -225,7 +225,7 @@ fftw_r2c_2d <- function(data, HermConj=1) {
 
     ##correct for the fact the c call is column-major
 
-    out <- .C("fft_r2c_2d", as.integer(nC), as.integer(nR),
+    out <- .C("cfft_r2c_2d", as.integer(nC), as.integer(nR),
               as.double(data), res=matrix(as.complex(0), nRc , nC))
 
     res <- as.matrix(out$res)
@@ -260,7 +260,7 @@ fftw_c2c_2d <- function(data, inverse=0) {
 
     ##we correct for the fact the c call is column-major
 
-    out <- .C("fft_c2c_2d", as.integer(nC), as.integer(nR),
+    out <- .C("cfft_c2c_2d", as.integer(nC), as.integer(nR),
               as.complex(data),
               res=matrix(as.complex(0), nR , nC),
               as.integer(inverse))

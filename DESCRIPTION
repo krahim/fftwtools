@@ -9,4 +9,4 @@ Suggests: fftw
 Description: Provides a wrapper for several FFTW functions. This package provides access to the two-dimensional FFT, the multivariate FFT, and the one-dimensional real to complex FFT using FFTW3. The package includes the functions fftw and mvfftw which are designed to mimic the functionality of the R functions fft and mvfft. The FFT functions have a parameter that allows them to not return the redundant complex conjugate when the input is real data. 
 License: GPL (>= 2)
 ByteCompile: true
-URL: http://github.com/krahim/fftwtools
+URL: https://github.com/krahim/fftwtools
