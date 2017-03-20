@@ -1,12 +1,12 @@
 Package: fftwtools
 Version: 0.9-8
-Title: Wrapper for 'FFTW3' that includes One-Dimension Univariate and Multivariate 'FFT', and the two-dimension 'FFT'
+Title: Wrapper for 'FFTW3' Includes: One-Dimensional Univariate, One-Dimensional Multivariate, and Two-Dimensional Transform
 Author: Karim Rahim <karim.rahim@queensu.ca>
 Maintainer: Karim Rahim <karim.rahim@queensu.ca>
 Depends: R (>= 2.15.2)
 SystemRequirements: fftw3 (>= 3.1.2)
 Suggests: fftw
-Description: Provides a wrapper for several 'FFTW' functions. This package provides access to the two-dimensional 'FFT', the multivariate 'FFT', and the one-dimensional real to complex 'FFT' using FFTW3. The package includes the functions fftw and mvfftw which are designed to mimic the functionality of the R functions fft() and mvfft(). The 'FFT' functions have a parameter that allows them to not return the redundant complex conjugate when the input is real data. 
+Description: Provides a wrapper for several 'FFTW' functions. This package provides access to the two-dimensional 'FFT', the multivariate 'FFT', and the one-dimensional real to complex 'FFT' using FFTW3. The package includes the functions fftw() and mvfftw() which are designed to mimic the functionality of the R functions fft() and mvfft(). The 'FFT' functions have a parameter that allows them to not return the redundant complex conjugate when the input is real data. 
 License: GPL (>= 2)
 ByteCompile: true
 URL: https://github.com/krahim/fftwtools
