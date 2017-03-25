@@ -191,3 +191,22 @@ void cfft_c2c_2d(int* nx, int* ny, double complex* data,
     
     fftw_destroy_plan(p);
 } 
+
+void cfft_c2c_xd(int* r, int* n, double complex* data,
+                 double complex* res, int* inverse) {
+
+    int sign;
+    fftw_plan p;
+
+    if(*inverse == 1) {
+        sign = FFTW_BACKWARD;
+    } else {
+        sign = FFTW_FORWARD;
+    }
+
+    p = fftw_plan_dft(*r, n, data, res, sign, FFTW_ESTIMATE);
+
+    fftw_execute(p);
+
+    fftw_destroy_plan(p);
+}
