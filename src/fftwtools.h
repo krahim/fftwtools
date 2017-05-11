@@ -53,6 +53,11 @@ void cfft_r2c_2d(int* nx, int* ny, double* data, double complex* res);
 void cfft_c2c_2d(int* nx, int* ny, double complex* data, 
                 double complex* res, int* inverse);
 
+void cfft_r2c_3d(int* nx, int* ny, int *nz, double* data, double complex* res);
+
+void cfft_c2c_3d(int* nx, int* ny, int *nz, double complex* data, 
+                 double complex* res, int* inverse);
+
 void cfft_c2c_xd(int* r, int* n, double complex* data,
                 double complex* res, int* inverse);
 

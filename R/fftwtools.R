@@ -59,6 +59,21 @@ fftw2d <- function(data, inverse=0, HermConj=1) {
     return(res)
 }
 
+##generic 3d fft
+fftw3d <- function(data, inverse=0, HermConj=1) {
+  res <- NULL
+  if(inverse==0) {
+    if(!is.complex(data)) {
+      res <- fftw_r2c_3d(data, HermConj=HermConj)
+    } else {
+      res <- fftw_c2c_3d(data, inverse=0)
+    }
+  } else {
+    res <- fftw_c2c_3d(data, inverse=1)
+  }
+  return(res)
+}
+
 ##generic function to call multicol fftw3
 mvfftw <- function(data, inverse=0, HermConj=1, n=NULL, fftplanopt=0) {
     res <- NULL
@@ -274,6 +289,54 @@ fftw_c2c_2d <- function(data, inverse=0) {
               PACKAGE="fftwtools")
 
     return(out$res)
+}
+
+fftw_r2c_3d <- function(data, HermConj=1) {
+
+  n1 <- dim(data)[1]
+  n2 <- dim(data)[2]
+  n3 <- dim(data)[3]
+
+  n1div2 <- n1/2
+  n1c <- floor(n1div2) +1
+  idx1Append <- ceiling(n1div2):2
+
+  ##correct for the fact the c call is column-major
+  out <- .C("cfft_r2c_3d", as.integer(n3), as.integer(n2),
+            as.integer(n1), as.double(data),
+            res=array(as.complex(0), dim=c(n1c,n2,n3)),
+            PACKAGE="fftwtools")
+
+  if (HermConj==1 && n1 > 2) {
+    ##With the exception of the first row, the
+    ##resulting array is Hermatian --conjugate symmetric
+    i2 <- if (n2 > 1) c(1,n2:2) else 1
+    i3 <- if (n3 > 1) c(1,n3:2) else 1
+
+    res <- array(NA, c(n1,n2,n3))
+    res[1:n1c,,] <- out$res
+    res[(n1c+1):n1,,] <- Conj(out$res[idx1Append,i2,i3])
+  } else {
+    res <- out$res
+  }
+
+  return(res)
+}
+
+fftw_c2c_3d <- function(data, inverse=0) {
+
+  n1 <- dim(data)[1]
+  n2 <- dim(data)[2]
+  n3 <- dim(data)[3]
+
+  ##we correct for the fact the c call is column-major
+  out <- .C("cfft_c2c_3d", as.integer(n3), as.integer(n2),
+            as.integer(n1), as.complex(data),
+            res=array(as.complex(0), dim=dim(data)),
+            as.integer(inverse),
+            PACKAGE="fftwtools")
+
+  return(out$res)
 }
 
 fftw_c2c_xd <- function(data, inverse=0) {
