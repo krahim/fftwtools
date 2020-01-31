@@ -13,3 +13,6 @@ inst/doc/auto/
 src/symbols.rds
 configure
 vignettes/auto/
+.Rproj.user
+autoscan.log
+configure.scan
