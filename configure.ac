@@ -35,6 +35,9 @@ AC_PROG_CC
 ## --- FFTW 3 ----------------------------------------------------------------
 PKG_CHECK_MODULES(FFTW, fftw3)
 
+echo "PKG_CPPFLAGS=$PKG_CPPFLAGS"
+echo "PKG_LIBS=$PKG_LIBS"
+
 ## --- Output ----------------------------------------------------------------
 AC_SUBST(FFTW_CFLAGS)
 AC_SUBST(FFTW_LIBS)
