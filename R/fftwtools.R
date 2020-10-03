@@ -275,3 +275,19 @@ fftw_c2c_2d <- function(data, inverse=0) {
 
     return(out$res)
 }
+
+fftw_c2c_xd <- function(data, inverse=0) {
+
+    n <- dim(data)
+    r <- length(n)
+
+    ##we correct for the fact the c call is column-major
+    n <- rev(n)
+
+    out <- .C("cfft_c2c_xd", as.integer(r), as.integer(n),
+              as.complex(data),
+              res=array(as.complex(0), rev(n)),
+              as.integer(inverse))
+
+    return(out$res)
+}
