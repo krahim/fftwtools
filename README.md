@@ -1,3 +1,5 @@
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/fftwtools)](https://cran.r-project.org/package=fftwtools)
+
 fftwtools
 =========
 
