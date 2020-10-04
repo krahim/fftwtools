@@ -1,5 +1,5 @@
 Package: fftwtools
-Version: 0.9-9
+Version: 0.9-10
 Title: Wrapper for 'FFTW3' Includes: One-Dimensional Univariate, One-Dimensional Multivariate, and Two-Dimensional Transform
 Author: Karim Rahim <karim.rahim@queensu.ca>
 Maintainer: Karim Rahim <karim.rahim@queensu.ca>
