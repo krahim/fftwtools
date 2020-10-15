@@ -16,9 +16,9 @@ Alternative manual build instructions for general Linux machine:
 
 1) download and unzip to a folder called fftwtools-master
 2) from the parent folder:
-    a) R CMD build fftwtools-master/ 
-    b) R CMD check fftwtools_*.tar.gz (optional)
-    c) R CMD INSTALL fftwtools_*.tar.gz 
+    1.  R CMD build fftwtools-master/ 
+    2.  R CMD check fftwtools_*.tar.gz (optional)
+    3.  R CMD INSTALL fftwtools_*.tar.gz 
 
 Note: The version number may change, and you will likely have to set the PATH variable for other operating systems. This will require gfortran, and fftw libraries installed. Please see the documentaion for your Linux distribution, Xcode (or Fink) for Mac, or Rtools on CRAN for Windows. You will need to ensure you properly install fftw and link files accordingly. 
 
