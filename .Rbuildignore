@@ -12,6 +12,7 @@ README.md
 ~$
 buildNotesInR.txt
 ^speedTrials
+^\\.github/
 
 ^.*\.Rproj$
 ^\.Rproj\.user$
