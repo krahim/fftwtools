@@ -6,7 +6,6 @@ aclocal.log
 autom4te.cache/
 ^config.log
 ^config.status
-^configure$
 ^clean$
 src/build/autoconf/config
 README.md
@@ -14,3 +13,5 @@ README.md
 buildNotesInR.txt
 ^speedTrials
 
+^.*\.Rproj$
+^\.Rproj\.user$
