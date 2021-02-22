@@ -1,5 +1,9 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/fftwtools)](https://cran.r-project.org/package=fftwtools)
 
+NOTE: 
+I appreciate all contributions pulls requests and help. I would like to keep version this ready to upload to CRAN. That means if a pull request does not pass R CMD check --as-cran with the latest version of R, I will only spend a short bit of time trying to debug it before removing it.
+
+Please note that if the  --as-cran check generates a WARNING or a NOTE then it is equivalent a fail, as it will be hard to upload to CRAN, and if I cannot quickly debug it then I will remove the change.
 
 fftwtools
 =========
