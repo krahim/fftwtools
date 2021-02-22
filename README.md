@@ -1,6 +1,4 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/fftwtools)](https://cran.r-project.org/package=fftwtools)
-[![R.CMD.check](https://github.com/krahim/fftwtools/workflows/R-CMD-check/badge.svg)](https://github.com/krahim/fftwtools/actions?query=workflow%3AR-CMD-check)
-
 
 We don't need no stinking badges!
 
