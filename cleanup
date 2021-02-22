@@ -1,0 +1,10 @@
+#!/bin/sh
+
+rm -rf fftwtools.Rcheck/ \
+   autom4te.cache/ \
+   config.log \
+   config.status \
+   src/*.o \
+   src/*.dll \
+   src/*.so \
+   src/Makevars
