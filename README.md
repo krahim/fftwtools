@@ -8,7 +8,7 @@ Please note that if the  --as-cran check generates a WARNING or a NOTE then it i
 fftwtools
 =========
 
-R package, implementing of fftw 2d, multivariate fftw, and other fftw tools.
+R package wrapping fftw. It has 1d, 2d, 3d, multivariate fftw, and other tools.
 
 The easiest way to install the development version is using the `remotes` package (which needs to be installed first):
 
