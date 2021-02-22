@@ -6,11 +6,13 @@ aclocal.log
 autom4te.cache/
 ^config.log
 ^config.status
-^configure$
 ^clean$
 src/build/autoconf/config
 README.md
 ~$
 buildNotesInR.txt
 ^speedTrials
-.github/
+^\\.github/
+
+^.*\.Rproj$
+^\.Rproj\.user$

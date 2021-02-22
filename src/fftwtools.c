@@ -192,6 +192,39 @@ void cfft_c2c_2d(int* nx, int* ny, double complex* data,
     fftw_destroy_plan(p);
 } 
 
+void cfft_r2c_3d(int* nx, int* ny, int *nz, double* data, double complex* res) {
+
+  fftw_plan p;
+
+  p = fftw_plan_dft_r2c_3d(*nx, *ny, *nz, data, res,
+                           FFTW_ESTIMATE);
+
+  fftw_execute(p);
+
+  fftw_destroy_plan(p);
+}
+
+
+void cfft_c2c_3d(int* nx, int* ny, int *nz, double complex* data,
+                 double complex* res, int* inverse) {
+
+  int sign;
+  fftw_plan p;
+
+  if(*inverse == 1) {
+    sign = FFTW_BACKWARD;
+  } else {
+    sign = FFTW_FORWARD;
+  }
+
+  p = fftw_plan_dft_3d(*nx, *ny, *nz, data, res,
+                       sign, FFTW_ESTIMATE);
+
+  fftw_execute(p);
+
+  fftw_destroy_plan(p);
+}
+
 void cfft_c2c_xd(int* r, int* n, double complex* data,
                  double complex* res, int* inverse) {
 
