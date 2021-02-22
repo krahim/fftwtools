@@ -25,4 +25,4 @@ Note: The version number may change, and you will likely have to set the PATH va
 
 See the folder speedTrials for an example of testing for which data length fftw is generally faster. On my laptop I found fftw faster at approximately >= 2^17 data points, and mvfftw faster at approximately >= 2^16 data points using five columns of data.
 
-Note: Mac users please see: http://r.research.att.com/tools/
+Note: Mac users please see: https://cran.r-project.org/bin/macosx/tools/
