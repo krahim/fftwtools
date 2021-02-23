@@ -30,3 +30,11 @@ https://cran.r-project.org/bin/windows/Rtools/
 
 Mac users please see: 
 https://mac.r-project.org/tools/
+
+
+Another method to install the the github version, as suggested by @rubak is using the `remotes` package (which needs to be installed first):
+
+```r
+remotes::install_github("krahim/fftwtools")
+```
+
