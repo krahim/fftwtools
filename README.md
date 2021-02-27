@@ -8,7 +8,7 @@ I appreciate all contributions, pull requests, and help. I would like to keep th
 
 Please note that if the  --as-cran check generates a WARNING or a NOTE then it is not a clean pass, and it is not ready to upload to CRAN. If I cannot quickly debug the Warning or Note, then I will remove the change.
 
-In general, I do not keep a seperate development version and changes are uploaded to cran once they are integrated. 
+In general, I do not keep a seperate development version and changes are uploaded to CRAN once they are integrated. 
 
 
 fftwtools
