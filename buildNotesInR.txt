@@ -1,6 +1,6 @@
-This is my current attempt at a minimalist set of tools to build fftwtools R package on various platforms. FFTW must be installed on the platforms for this to work.
+This is my current attempt at a minimalist set of tools to build fftwtools R package on various platforms. FFTW **must** be installed on the platforms for this to work.
 
-I test this by building the package on LINUX with the latest development version of R and I check the package --as-cran prior to uploading to CRAN. When I change build scripts that may affect how the packages link external libraries such as BLAS, LAPACK, or FFTW, I test the build on winbuilder, an NT machine maintained by Uwe Liggs. http://win-builder.r-project.org/
+I tested this by building the package on LINUX --as-cran prior to uploading to CRAN. I have not recently tested this build on Windows or Mac but to my knowledge contributers have. 
 
 configure.ac 		## required for Linux, macOS, ... builds 
 configure               ## generated from configure.ac by calling autoconf
