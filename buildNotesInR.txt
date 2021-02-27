@@ -2,13 +2,11 @@ This is my current attempt at a minimalist set of tools to build fftwtools R pac
 
 I test this by building the package on LINUX with the latest development version of R and I check the package --as-cran prior to uploading to CRAN. When I change build scripts that may affect how the packages link external libraries such as BLAS, LAPACK, or FFTW, I test the build on winbuilder, an NT machine maintained by Uwe Liggs. http://win-builder.r-project.org/
 
-configure.ac ## required on LINUX 
-configure ## I wonder if this can be removed? (Removed success May 4 2013)
-src/Makevars.in ## required on LINUX
-src/Makevars (may 5th needeed in general LINUX)
-src/build/autoconf/install.sh ## required on LINUX
-src/build/autoconf/config.guess ## perhaps these last two can be removed (Removed success May 4 2013)
-src/build/autoconf/config.sub (Removed success May 4 2013)
+configure.ac 		## required for Linux, macOS, ... builds 
+configure               ## generated from configure.ac by calling autoconf
+src/Makevars.in         ## used by configure as input
+src/Makevars            ## create by configure, temporary file, removed by cleanup
+src/Makevars.win        ## 'fixed' as paths on the CRAN Windows build machine do not change
 
 Note this differs from the multitaper package which requires the following files: 
 configure.ac
