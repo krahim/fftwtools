@@ -1,6 +1,6 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/fftwtools)](https://cran.r-project.org/package=fftwtools)
 
-NOTE: FFTW **MUST** be installed on the build machine and fftw.h **must** be visable for this to work. 
+NOTE: FFTW **MUST** be installed on the build machine and fftw.h **must** be visible for this to work. 
 
 NOTE to Maintainer (*me*): Update the version number in DESCRIPTION and configure.ac prior to uploading to CRAN. This must be done in two places.
 
