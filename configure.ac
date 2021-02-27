@@ -11,7 +11,7 @@
 AC_PREREQ(2.61)
 
 ## Update this version number along with DESCRIPTION
-AC_INIT([fftwtools], [0.9-10])
+AC_INIT([fftwtools], [0.9-11])
 
 # Ensure C++ is set up as R expects
 : ${R_HOME=`R RHOME`}
